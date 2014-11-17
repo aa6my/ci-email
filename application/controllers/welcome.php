@@ -10,7 +10,7 @@ class Welcome extends CI_Controller {
 public function index()
 {
 
-$this->load->view('header');
+	$this->load->view('header');
     $this->load->view('email_form');
     $this->load->view('footer');
 }
@@ -27,6 +27,18 @@ $this->load->view('header');
     $this->load->helper('email');
     //load email library
     $this->load->library('email');
+           $this->load->library('email');
+            $config['protocol']='smtp';
+            $config['smtp_host']='ssl://smtp.googlemail.com';
+            $config['smtp_port']='465';
+            $config['smtp_timeout']='30';
+            $config['smtp_user']='email';
+            $config['smtp_pass']='pass';
+            $config['charset']='utf-8';
+            $config['newline']="\r\n";
+            $config['wordwrap'] = TRUE;
+            $config['mailtype'] = 'html';
+            $this->email->initialize($config);
     
     //read parameters from $_POST using input class
     $email = $this->input->post('e-mail',true);    
